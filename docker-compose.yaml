@@ -12,7 +12,6 @@ services:
       - MODS=TMOD
     volumes:
       - ./terraria:/terraria
-      - ./server:/terrariaServer
     tty: true
     stdin_open: true
     
