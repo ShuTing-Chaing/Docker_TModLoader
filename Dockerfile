@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 
-ENV MODS=VANILLA \
+ENV MODS=TMOD \
     TERRARIA_VER=1353 \
     TMOD_VER=0.11.8
 
