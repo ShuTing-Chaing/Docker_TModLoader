@@ -1,23 +1,59 @@
 #!/bin/sh
-install(){
-    wget https://github.com/tModLoader/tModLoader/releases/download/v$tmod_version/tModLoader.Linux.v$tmod_version.zip
-    wget http://terraria.org/server/terraria-server-$terraria_version.zip
-    unzip terraria-server-$terraria_version.zip -d terraria
-    rm terraria-server-$terraria_version.zip
-    cp terraria/Linux/* ./
+installTerraria(){
+    echo "Terraria Server:"
+    echo "Downlaoding..." 
+    wget -q http://terraria.org/server/terraria-server-$TERRARIA_VER.zip
+    echo "Extracting..."
+    unzip -qq terraria-server-$TERRARIA_VER.zip -d terraria
+    echo "Preparing files..."
+    cp -r terraria/$TERRARIA_VER/Linux/* ./
+    echo "Updating permissions..."
+    chmod +x ./TerrariaServer.bin.x86*
+    echo "Cleaning..."
+    rm terraria-server-$TERRARIA_VER.zip
     rm -Rf terraria
-    unzip tModLoader.Linux.v$tmod_version.zip -d ./
-    rm tModLoader.Linux.v$tmod_version.zip
+    echo "Done"
+    
+}
+
+installTmod(){
+    echo ""
+    echo "tModLoader:"
+    echo "Downlaoding..." 
+    wget -q https://github.com/tModLoader/tModLoader/releases/download/v$TMOD_VER/tModLoader.Linux.v$TMOD_VER.zip
+    echo "Extracting..."
+    unzip -o -qq tModLoader.Linux.v$TMOD_VER.zip -d ./
+    echo "Preparing files..."
+    echo "Updating permissions..."
     chmod u+x tModLoaderServer*
+    chmod +x ./launcher
+    echo "Cleaning..."
+    rm tModLoader.Linux.v$TMOD_VER.zip
+    echo "Done"
 }
 
 run(){
-    /terrariaServer/tModLoaderServer
+    echo ""
+    echo "Starting server..."
+
+    if [ "$MODS" = "VANILLA" ]; then
+        ARCH=`uname -m`
+        /terrariaServer/TerrariaServer.bin.$ARCH
+    fi
+
+    if [ "$MODS" = "TMOD" ]; then
+        /terrariaServer/tModLoaderServer
+    fi
 }
 
+if  [ ! -f "/terrariaServer/launcher" ]; then
 
-if  [ ! -f "/terrariaServer/tModLoaderServer" ]; then
-    install
+    installTerraria
+
+    if [ "$MODS" = "TMOD" ]; then
+        installTmod
+    fi
+
 fi
-run
 
+run

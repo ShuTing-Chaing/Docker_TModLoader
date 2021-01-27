@@ -1,8 +1,8 @@
 FROM debian:stretch-slim
 
-ENV port=7777 \
-    terraria_version=1353 \
-    tmod_version=0.11.8
+ENV MODS=VANILLA \
+    TERRARIA_VER=1353 \
+    TMOD_VER=0.11.8
 
 #Install dependencies
 RUN apt update \
@@ -22,7 +22,7 @@ RUN chmod +x /terraria_launcher/run_terraria.sh
 # -----------------------------------
 # only port 7777 has to be forwarded
 # -----------------------------------
-EXPOSE $port:$port/tcp
+EXPOSE 7777/tcp
 
 WORKDIR /terrariaServer
 
