@@ -26,4 +26,4 @@ EXPOSE $port:$port/tcp
 
 WORKDIR /terrariaServer
 
-ENTRYPOINT ["/terraria_launcher/run_terraria.sh","${terraria_version}","${tmod_version}"]
+ENTRYPOINT ["/terraria_launcher/run_terraria.sh"]

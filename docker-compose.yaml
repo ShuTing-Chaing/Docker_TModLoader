@@ -1,0 +1,16 @@
+version: "3"
+services:
+
+  tmodloader:
+    image: graivtyl/tmodloader:latest
+    restart: unless-stopped
+    ports:
+      - '7777:7777'
+    environment:
+      - terraria_version=1353
+      - tmod_version=0.11.8
+    volumes:
+      - ./terraria:/terraria
+    tty: true
+    stdin_open: true
+    
