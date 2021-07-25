@@ -1,8 +1,8 @@
 #!/bin/sh
 installTerraria(){
     echo "Terraria Server:"
-    echo "Downlaoding..." 
-    wget -q http://terraria.org/server/terraria-server-$TERRARIA_VER.zip
+    echo "Downlaoding..."
+    wget -q http://terraria.org/api/download/pc-dedicated-server/terraria-server-$TERRARIA_VER.zip
     echo "Extracting..."
     unzip -qq terraria-server-$TERRARIA_VER.zip -d terraria
     echo "Preparing files..."
