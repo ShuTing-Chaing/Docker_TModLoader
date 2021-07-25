@@ -2,13 +2,13 @@ version: "3"
 services:
 
   tmodloader:
-    image: gravityl/tmodloader:latest
+    image: hhhfffted/tmodloader:latest
     restart: unless-stopped
     ports:
       - '7777:7777'
     environment:
-      - TERRARIA_VER=1353
-      - TMOD_VER=0.11.8
+      - TERRARIA_VER=1423
+      - TMOD_VER=0.11.8.4
       - MODS=TMOD
     volumes:
       - ./terraria:/terraria
