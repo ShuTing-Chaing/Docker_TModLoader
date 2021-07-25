@@ -1,8 +1,8 @@
 FROM debian:stretch-slim
 
 ENV MODS=TMOD \
-    TERRARIA_VER=1353 \
-    TMOD_VER=0.11.8
+    TERRARIA_VER=1423 \
+    TMOD_VER=0.11.8.4
 
 #Install dependencies
 RUN apt update \
